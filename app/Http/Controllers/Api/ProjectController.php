@@ -17,4 +17,8 @@ class ProjectController extends Controller
         $project= Project::where('slug',$slug)->with('type','tecnologies')->first();
         return response()->json(compact('project'));
     }
+    public function search($searech){
+        $projects= Project::with('type','tecnologies')->where('title','like','%'.$searech.'%')->get();
+        return response()->json(compact('projects'));
+    }
 }
