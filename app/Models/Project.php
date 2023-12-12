@@ -17,6 +17,7 @@ class Project extends Model
         'start_date',
         'explanation',
         'type_id',
+        'user_id',
         'image',
         'image_name'
     ];
@@ -28,7 +29,9 @@ class Project extends Model
     public function tecnologies(){
         return $this->belongsToMany(Tecnology::class);
     }
-
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     public static function generateSlug($string){
 
         $slug =  Str::slug($string, '-');

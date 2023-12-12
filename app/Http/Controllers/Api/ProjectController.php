@@ -10,7 +10,7 @@ use App\Models\Project;
 class ProjectController extends Controller
 {
     public function index(){
-        $projects= Project::with('type','tecnologies')->get();
+        $projects= Project::with('type','tecnologies', 'user')->get();
         return response()->json(compact('projects'));
     }
     public function projectDetails($slug){
