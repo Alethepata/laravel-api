@@ -15,6 +15,11 @@ class ProjectController extends Controller
     }
     public function projectDetails($slug){
         $project= Project::where('slug',$slug)->with('type','tecnologies')->first();
+        if($project->image){
+            $project->image = asset('storage/'. $project->image);
+        }else{
+            $project->image = asset('/img/placeholder.png');
+        }
         return response()->json(compact('project'));
     }
     public function search($searech){
