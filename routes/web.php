@@ -41,5 +41,6 @@ Route::middleware(['auth', 'verified'])
     Route::resource('types', TypeController::class);
     Route::get('type-project', [TypeController::class, 'typeProject'])->name('type-project');
     Route::get('tecnolgy-project/{tecnology}',[TecnologyController::class, 'tecnologyProject'])->name('tecnolgy-project');
+    Route::get('order-by/{direction}/{column}', [ProjectController::class, 'orderBy'])->name('order-by');
    });
 require __DIR__.'/auth.php';

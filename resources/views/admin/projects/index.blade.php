@@ -12,11 +12,22 @@
     <table class="table my-3">
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Titolo</th>
-            <th scope="col">Iniziato</th>
-            <th scope="col">Finito</th>
-            <th scope="col">Tipo</th>
+            <th scope="col">
+                <a class="text-decoration-none text-dark" href="{{route('admin.order-by',['direction' => $direction, 'column' => 'id'])}}">Id</a>
+            </th>
+            <th scope="col">
+                <a class="text-decoration-none text-dark" href="{{route('admin.order-by',['direction' => $direction, 'column' => 'title'])}}">Titolo</a>
+            </th>
+            <th scope="col">
+                <a class="text-decoration-none text-dark" href="{{route('admin.order-by',['direction' => $direction, 'column' => 'start_date'])}}">Iniziato</a>
+            </th>
+            <th scope="col">
+                <a class="text-decoration-none text-dark" href="{{route('admin.order-by',['direction' => $direction, 'column' => 'end_date'])}}">Finito</a>
+            </th>
+            <th scope="col">
+                <a class="text-decoration-none text-dark" href="{{route('admin.order-by',['direction' => $direction, 'column' => 'type_id'])}}">Tipo</a>
+            </th>
+
             <th scope="col">Azioni</th>
           </tr>
         </thead>
