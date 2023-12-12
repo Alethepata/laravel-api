@@ -75,9 +75,7 @@ class ProjectController extends Controller
 
         }
 
-
         $new_project->fill($form_data);
-
         $new_project->save();
 
         if(array_key_exists('tecnologies', $form_data)){
@@ -130,6 +128,17 @@ class ProjectController extends Controller
             $form_data['slug'] = Project::generateSlug($form_data['title']);
         }
 
+        if(array_key_exists('image', $form_data) && $form_data['image']!= ""){
+            if($project->image){
+                Storage::disk('public')->delete($project->image);
+            }
+
+            // $form_data['image_name'] = $request->file('image')->getClientOriginalName();
+
+            $form_data['image'] = Storage::put('uploads', $form_data['image']);
+
+        }
+
         $project->update($form_data);
 
         if(array_key_exists('tecnologies', $form_data)){
@@ -150,6 +159,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->image){
+            Storage::disk('public')->delete($project->image);
+        }
         $project->delete();
         return redirect()->route('admin.projects.index')->with('success', 'Eliminato correttamente');
     }

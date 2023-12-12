@@ -48,9 +48,12 @@
 
          @endforeach
 
-        <div class="mb-3 my-3">
-            <label for="image" class="form-label">Imagine</label>
-            <input class="form-control" type="file" id="image" name="image">
+        <div class="mb-3">
+
+            <label for="image" class="form-label">Immagine</label>
+            <input id="image" class="form-control" name="image" type="file" onchange="showImage(event)">
+            <img id="thumb" class="image" src='/img/placeholder.png'/>
+
         </div>
 
 
@@ -69,6 +72,23 @@
 
         <button type="submit" class="btn btn-primary">Aggiungi</button>
       </form>
+
+
+      <script>
+        function showImage(event){
+            const thumb = document.getElementById('thumb');
+            thumb.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+    <style>
+        .image{
+            margin-top:10px;
+             width: 100px;
+             height: 100px;
+             object-fit: cover;
+             border-radius: 10px;
+        }
+    </style>
 
 
 @endsection
