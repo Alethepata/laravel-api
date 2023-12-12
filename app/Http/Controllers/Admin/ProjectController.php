@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Tecnology;
 use App\Http\Requests\ProjectRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 class ProjectController extends Controller
 {
     /**
@@ -22,9 +24,9 @@ class ProjectController extends Controller
     {
 
         if(isset($_GET['search'])){
-            $projects = Project::where('title', 'LIKE', '%'.$_GET['search'].'%')->paginate(5);
+            $projects = Project::where('title', 'LIKE', '%'.$_GET['search'].'%')->where('user_id', Auth::id())->paginate(5);
         }else{
-            $projects = Project::orderBy('id', 'desc')->paginate(5);
+            $projects = Project::orderBy('id', 'desc')->where('user_id', Auth::id())->paginate(5);
         }
 
         $direction= 'desc';
@@ -34,7 +36,7 @@ class ProjectController extends Controller
     public function orderBy($direction, $column)
     {
         $direction = $direction == 'desc'? 'asc' : 'desc';
-        $projects = Project::orderBy($column, $direction)->paginate(5);
+        $projects = Project::orderBy($column, $direction)->where('user_id', Auth::id())->paginate(5);
         return view('admin.projects.index', compact('projects', 'direction'));
     }
 
