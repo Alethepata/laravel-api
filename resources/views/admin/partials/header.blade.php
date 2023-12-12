@@ -8,8 +8,9 @@
           <div class="d-flex ">
 
             <div class="container-fluid">
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <form action="{{route('admin.projects.index')}}" class="d-flex" role="search" method="GET">
+                @csrf
+                <input class="form-control me-2" name="search" type="search" placeholder="Search">
               </form>
             </div>
 
