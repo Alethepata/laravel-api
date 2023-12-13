@@ -1,9 +1,13 @@
-<p>
-    hai ricevuto un nuovo messaggio:
+<div>
+    <h1>Hai ricevuto un messaggio da: {{$lead->name}}</h1>
+    <em>{{$lead->email}}</em>
+    <p>
+        {{ $lead->message }}
+    </p>
+</div>
 
-    {{ $lead->name }} <br>
-
-    {{ $lead->email }} <br>
-
-    {{ $lead->message }}
-</p>
+<style>
+    div{
+        padding: 0 20px;
+    }
+</style>
