@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\LeadController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,4 @@ use App\Http\Controllers\Api\ProjectController;
 Route::get('projects', [ProjectController::class, 'index']);
 Route::get('projects/{slug}', [ProjectController::class, 'projectDetails']);
 Route::get('/search/{searech}', [ProjectController::class,'search']);
+Route::post('/send-email', [LeadController::class,'store']);
